@@ -1,10 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 
 export const useActiveSection = (sectionIds: string[], rootMargin = '-50% 0px -50% 0px') => {
-  const [activeSection, setActiveSection] = useState<string>(sectionIds[0]);
+  const [activeSection, setActiveSection] = useState<string>('');
   const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
+    const { current: currentObserver } = observer;
+    if (currentObserver) {
+        currentObserver.disconnect();
+    }
+
     observer.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -16,21 +21,18 @@ export const useActiveSection = (sectionIds: string[], rootMargin = '-50% 0px -5
       { rootMargin }
     );
 
-    const { current: currentObserver } = observer;
+    const { current: newObserver } = observer;
     sectionIds.forEach((id) => {
       const el = document.getElementById(id);
       if (el) {
-        currentObserver.observe(el);
+        newObserver.observe(el);
       }
     });
 
     return () => {
-      sectionIds.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) {
-          currentObserver.unobserve(el);
-        }
-      });
+      if (newObserver) {
+        newObserver.disconnect();
+      }
     };
   }, [sectionIds, rootMargin]);
 

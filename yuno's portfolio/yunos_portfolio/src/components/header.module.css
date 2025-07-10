@@ -1,0 +1,41 @@
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.navLink {
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.navLink:hover {
+    color: #ffffff;
+}
+
+.navLink.active {
+    color: #61dafb;
+}
+
+.navLink.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #61dafb;
+}
