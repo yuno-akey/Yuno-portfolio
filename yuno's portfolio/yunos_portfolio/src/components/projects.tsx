@@ -12,7 +12,7 @@ const projects = [
     title: '動体検知付監視カメラアプリ',
     description: 'PythonとOpenCVを使用して、動体検知機能を持つ監視カメラアプリケーションを開発しました。',
     link: 'https://github.com/yuno-akey/pyWebCamMonitor',
-    imageurl: 'https://opengraph.githubassets.com/e6a4505856417242171128362534568858273822151788730823224488358259/yuno-akey/pyWebCamMonitor' 
+    imageUrl: 'https://opengraph.githubassets.com/e6a4505856417242171128362534568858273822151788730823224488358259/yuno-akey/pyWebCamMonitor' 
   },
 ];
 
