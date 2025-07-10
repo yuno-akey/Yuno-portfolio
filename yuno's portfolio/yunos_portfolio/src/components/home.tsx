@@ -4,7 +4,7 @@ import backgroundImage from '../assets/background.png';
 
 const Home: React.FC = () => {
   return (
-    <section id="home" style={{ position: 'relative', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', overflow: 'hidden' }}>
+    <section id="home" style={{ position: 'relative', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', overflow: 'hidden',isolation: 'isolate' }}>
       <motion.div
         style={{
           position: 'absolute',
