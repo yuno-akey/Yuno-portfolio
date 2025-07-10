@@ -1,14 +1,33 @@
 import React from 'react';
+import { useActiveSection } from '../hooks/useActiveSection';
+import styles from './header.module.css';
+
+const navLinks = [
+  { href: '#home', id: 'home', label: 'Home' },
+  { href: '#profile', id: 'profile', label: 'Profile' },
+  { href: '#skills', id: 'skills', label: 'Skills' },
+  { href: '#projects', id: 'projects', label: 'Projects' },
+  { href: '#contact', id: 'contact', label: 'Contact' },
+];
 
 const Header: React.FC = () => {
-    return (
-        <header style={{ position: 'fixed', width: '100%', top: 0, background: 'rgba(26, 26, 26, 0.8)', backdropFilter: 'blur(10px)', zIndex: 10 }}>
-        <nav style={{ display: 'flex', justifyContent: 'center', gap: '2rem', padding: '1rem' }}>
-        <a href="#home">Home</a>
-        <a href="#profile">Profile</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+  const activeSection = useActiveSection(navLinks.map(link => link.id));
+
+  return (
+    <header className={styles.header}>
+      <nav className={styles.nav}>
+        {navLinks.map(link => {
+          const isActive = activeSection === link.id;
+          return (
+            <a 
+              key={link.label}
+              href={link.href}
+              className={`${styles.navLink} ${isActive ? styles.active : ''}`}
+            >
+              {link.label}
+            </a>
+          );
+        })}
       </nav>
     </header>
   );
